@@ -26,7 +26,6 @@ bool get_intersection(const pair<Point,Point>& mainLine, const pair<Point,Point>
 {
   Point p1r = mainLine.first;
   Point p2r = mainLine.second;
-  
   Point p1o = otherLine.first;
   Point p2o = otherLine.second;
 
@@ -61,7 +60,6 @@ AreaSign cross_product(const pair<Point,Point>& line1, const pair<Point,Point>& 
 {
   double dx1 = line1.first.m_x - line1.second.m_x;
   double dy1 = line1.first.m_y - line1.second.m_y;
-
   double dx2 = line2.first.m_x - line2.second.m_x;
   double dy2 = line2.first.m_y - line2.second.m_y;
 
@@ -136,8 +134,8 @@ BSP* create_bsp(const vector<pair<Point,Point>> &segments)
   pair<Point,Point> line =segments[0];
   BSP* node = new BSP(line);
 
-  cout << "line is: " << endl;
-  print_line(line);
+  /*cout << "line is: " << endl;
+  print_line(line);*/
 
   vector<pair<Point,Point>> backSegs;
   vector<pair<Point,Point>> frontSegs;
@@ -146,10 +144,10 @@ BSP* create_bsp(const vector<pair<Point,Point>> &segments)
     get_front_back_segs(line,segments[i], frontSegs, backSegs);
   }
 
-  cout << "front segs are " << endl;
+  /*cout << "front segs are " << endl;
   print_segs(frontSegs);
   cout << "back segs are " << endl;
-  print_segs(backSegs);
+  print_segs(backSegs);*/
 
   node->m_front = create_bsp(frontSegs); 
   node->m_back = create_bsp(backSegs);
@@ -163,7 +161,6 @@ AreaSign get_sign_of_normal(const pair<Point,Point>& line)
   double dx = p1.m_x-p2.m_x;
   double dy = p1.m_y-p2.m_y;
   Point normal(-dy,dx); // normal to the mainLine   
-  
   AreaSign normalSign = cross_product(make_pair(p1,normal),line); 
   return normalSign;
 }
